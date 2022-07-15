@@ -1,2 +1,1 @@
-def main():
-    pass
+from configcat_client import configcat_client
