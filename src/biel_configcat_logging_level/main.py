@@ -1,1 +1,1 @@
-from configcat_client import configcat_client
+from src.biel_configcat_logging_level.configcat_client import configcat_client
