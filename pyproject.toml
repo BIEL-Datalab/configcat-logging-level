@@ -15,7 +15,7 @@ requires = [
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "biel_configcat_logging_level"
+name = "configcat_logging_level"
 version = "0.0.1"
 authors = [
   { name="biel-huangchunqi", email="huangcq1@bielcrystal.com" },

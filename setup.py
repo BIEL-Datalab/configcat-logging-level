@@ -1,7 +1,7 @@
 from setuptools import find_packages, setup
 
 setup(
-    name="biel_configcat_logging_level",
+    name="configcat_logging_level",
     description="Setting logging level dynamically with ConfigCat",
     author="biel-huangchunqi",
     author_email="huangcq1@bielcrystal.com",
