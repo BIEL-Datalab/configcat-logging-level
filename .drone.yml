@@ -1,0 +1,24 @@
+kind: pipeline
+type: kubernetes
+name: default
+
+steps:
+- name: Jira integration
+  image: bieldatalab/version-management-service
+  pull: always
+  settings:
+    jira_client_id:
+      from_secret: jira_client_id
+    jira_client_secret:
+      from_secret: jira_client_secret
+    instance: biel-datalab
+    datalab_github_bot_token:
+      from_secret: datalab_github_bot_token
+
+trigger:
+  branch:
+  - master
+  - INF-*
+  event:
+  - cron
+  - push
