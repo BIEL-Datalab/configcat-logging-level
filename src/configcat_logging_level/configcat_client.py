@@ -1,12 +1,13 @@
 from unittest.mock import create_autospec
 
 from configcatclient import ConfigCatClient, create_client_with_auto_poll
-from settings import settings
-from configcat_logging_level.logging_level import logging, default_logging_level_map
+from src.configcat_logging_level.settings import settings
+from src.configcat_logging_level.logging_level import logging, default_logging_level_map
 
 
 def configuration_changed_callback():
-    level = configcat_client.get_value("LOGGER_LEVEL", "Default")
+    LOGGER_LEVEL = settings.FEATURE_FLAG_NAME
+    level = configcat_client.get_value(LOGGER_LEVEL, "Default")
     level = level.upper()
     print(f"Logger level changed to {level}")
 
@@ -44,11 +45,15 @@ def get_configcat_client():
         configcat_client = create_client_with_auto_poll(
             settings.CONFIGCAT_SDK,
             on_configuration_changed_callback=configuration_changed_callback,
+            poll_interval_seconds=settings.CANFIGCAT_POLL_INTERVAL_SECONDS,
         )
         return configcat_client
     else:
         mock = create_autospec(ConfigCatClient)
-        mock.get_value.return_value = "default"
+        mock.get_value.return_value = settings.MOCK_LOGGING_LEVEL
+        print(
+            f"ConfigCatClient is mocked, mock.get_value.return_value is {settings.MOCK_LOGGING_LEVEL}"
+        )
         return mock
 
 
