@@ -25,3 +25,8 @@ def init_default_logging_level_map():
     global default_logging_level_map_has_been_set
     default_logging_level_map_has_been_set = True
     print("Default logging level map has been set")
+
+
+def init():
+    init_default_logging_level_map()
+    from configcat_logging_level.configcat_client import configcat_client
