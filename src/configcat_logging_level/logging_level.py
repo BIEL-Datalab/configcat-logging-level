@@ -1,7 +1,5 @@
 import logging
-
-default_logging_level_map = {}
-default_logging_level_map_has_been_set = False
+from configcat_logging_level import default_logging_level_map
 
 
 def init_default_logging_level_map():
@@ -22,8 +20,6 @@ def init_default_logging_level_map():
                 hash(handler): handler_level,
             }
 
-    global default_logging_level_map_has_been_set
-    default_logging_level_map_has_been_set = True
     print("Default logging level map has been set")
 
 
