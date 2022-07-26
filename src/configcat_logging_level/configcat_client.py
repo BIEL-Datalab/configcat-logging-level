@@ -1,8 +1,9 @@
 from unittest.mock import create_autospec
 
 from configcatclient import ConfigCatClient, create_client_with_auto_poll
+from configcat_logging_level import default_logging_level_map
 from configcat_logging_level.settings import settings
-from configcat_logging_level.logging_level import logging, default_logging_level_map
+from configcat_logging_level.logging_level import logging
 
 
 def configuration_changed_callback():
