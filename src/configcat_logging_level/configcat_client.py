@@ -41,7 +41,14 @@ def configuration_changed_callback():
 
 
 def get_configcat_client():
-    if settings.EXECUTION_ENV in ("k8s", "bastion", "test", "default"):
+    mock = create_autospec(ConfigCatClient)
+    mock.get_value.return_value = settings.MOCK_LOGGING_LEVEL
+
+    if settings.CONFIGCAT_SDK is None:
+        print("CONFIGCAT_SDK is not set")
+        return mock
+
+    elif settings.EXECUTION_ENV in ("k8s", "bastion", "test", "default"):
         configcat_client = create_client_with_auto_poll(
             settings.CONFIGCAT_SDK,
             on_configuration_changed_callback=configuration_changed_callback,
@@ -49,8 +56,6 @@ def get_configcat_client():
         )
         return configcat_client
     else:
-        mock = create_autospec(ConfigCatClient)
-        mock.get_value.return_value = settings.MOCK_LOGGING_LEVEL
         print(
             f"ConfigCatClient is mocked, mock.get_value.return_value is {settings.MOCK_LOGGING_LEVEL}"
         )
