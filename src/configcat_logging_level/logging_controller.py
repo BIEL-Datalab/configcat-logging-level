@@ -14,8 +14,8 @@ def get_value(
 
 
 def get_default_logging_level():
-    return {"default_logging_level_map": default_logging_level_map}
+    return default_logging_level_map
 
 
 def get_current_logging_level():
-    return {"current_logging_level_map": get_logging_level_map({})}
+    return get_logging_level_map({})
