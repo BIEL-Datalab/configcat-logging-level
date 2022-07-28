@@ -53,7 +53,7 @@ def get_configcat_client():
         configcat_client = create_client_with_auto_poll(
             settings.CONFIGCAT_SDK,
             on_configuration_changed_callback=configuration_changed_callback,
-            poll_interval_seconds=settings.CANFIGCAT_POLL_INTERVAL_SECONDS,
+            poll_interval_seconds=settings.CONFIGCAT_POLL_INTERVAL_SECONDS,
         )
         return configcat_client
     else:
