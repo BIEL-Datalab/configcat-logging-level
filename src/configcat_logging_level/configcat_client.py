@@ -25,7 +25,7 @@ def configuration_changed_callback():
                     handler_key = hash(handler)
                     handler_level = logger_level_map.get(handler_key, "INFO")
                     handler.setLevel(handler_level)
-                logger.setLevel(logger_level_map.get("default_level", "INFO"))
+                logger.setLevel(logger_level_map.get("level", "INFO"))
             print("Logger level set to DEFAULT successfully")
         else:
             print("Failed to get default_logging_level_map")

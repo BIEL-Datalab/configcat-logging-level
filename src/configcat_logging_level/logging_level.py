@@ -2,21 +2,21 @@ import logging
 from configcat_logging_level import default_logging_level_map
 
 
-def init_default_logging_level_map():
+def get_logging_level_map(level_map: dict):
     loggers = ["root", *logging.root.manager.loggerDict]
     for name in loggers:
         logger = logging.getLogger(name)
         effective_level = logger.getEffectiveLevel()
-        default_logging_level_map[name] = {
-            **default_logging_level_map.get(name, {}),
-            "default_level": effective_level,
+        level_map[name] = {
+            **level_map.get(name, {}),
+            "level": effective_level,
         }
 
         handlers = logger.handlers
         for handler in handlers:
             handler_level = handler.level
-            default_logging_level_map[name] = {
-                **default_logging_level_map.get(name, {}),
+            level_map[name] = {
+                **level_map.get(name, {}),
                 hash(handler): handler_level,
             }
 
@@ -24,5 +24,5 @@ def init_default_logging_level_map():
 
 
 def init():
-    init_default_logging_level_map()
+    get_logging_level_map(default_logging_level_map)
     from configcat_logging_level.configcat_client import configcat_client
