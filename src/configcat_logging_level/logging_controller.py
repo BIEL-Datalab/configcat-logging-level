@@ -1,6 +1,7 @@
 from configcat_logging_level.configcat_client import configcat_client
 from configcat_logging_level.logging_level import (
     default_logging_level_map,
+    get_logging_level_map,
 )
 from configcat_logging_level.settings import settings
 
@@ -14,3 +15,7 @@ def get_value(
 
 def get_default_logging_level():
     return {"default_logging_level_map": default_logging_level_map}
+
+
+def get_current_logging_level():
+    return {"current_logging_level_map": get_logging_level_map({})}
