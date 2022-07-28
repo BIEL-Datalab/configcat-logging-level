@@ -9,7 +9,7 @@ def get_logging_level_map(level_map: dict):
         effective_level = logger.getEffectiveLevel()
         level_map[name] = {
             **level_map.get(name, {}),
-            "default_level": effective_level,
+            "level": effective_level,
         }
 
         handlers = logger.handlers
