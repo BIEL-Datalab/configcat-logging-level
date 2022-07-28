@@ -19,8 +19,8 @@ def get_logging_level_map(level_map: dict):
                 **level_map.get(name, {}),
                 hash(handler): handler_level,
             }
-
     print("Default logging level map has been set")
+    return level_map
 
 
 def init():
