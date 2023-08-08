@@ -1,0 +1,11 @@
+name: Synchronize code from Github to Gogs
+on:
+  pull_request:
+    types: [opened, reopened]
+  push:
+    branches:
+      - '*'
+jobs:
+  call-workflow:
+    uses: BIEL-Datalab/common-workflows/.github/workflows/sync_code.yaml@master
+    secrets: inherit
